@@ -18,6 +18,8 @@ public class HomeBankingmhApplication {
 		return args -> {
 			Client client = new Client();
 			clientRepository.save(client);
+			clientRepository.save(new Client("Jack", "Bauer"));
+			clientRepository.save(new Client("Chloe", "O'Brian"));
 
 		};
 	}
