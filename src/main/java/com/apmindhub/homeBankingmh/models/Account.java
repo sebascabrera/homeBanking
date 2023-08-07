@@ -32,7 +32,7 @@ public class Account {
 
         this.number = number;
         this.balance = balance;
-        this.creationDate = creationDate;
+        this.creationDate = LocalDate.now();
     }
 //  metodos accesores
 
@@ -61,7 +61,9 @@ public class Account {
         return clientOwner;
     }
 
+    /*
     public void setClientOwner(Client clientOwner) {
         this.clientOwner = clientOwner;
     }
+    */
 }
