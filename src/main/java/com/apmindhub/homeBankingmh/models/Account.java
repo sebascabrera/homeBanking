@@ -25,7 +25,7 @@ public class Account {
 
     // Constructores
     public Account(){
-        this.creationDate = LocalDate.now();
+
     };
 
     public Account(String number, LocalDate creationDate,Double balance ){

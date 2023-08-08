@@ -17,28 +17,28 @@ public class Client {
     private Long id;
     private String firstName;
     private String lastName;
-    private String eMail;
+    private String email;
 
     //Constructores
 
     public Client(){
 
     }
-    public Client(String firstName, String lastName, String eMail) {
+    public Client(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.eMail = eMail;
+        this.email = email;
     }
 
     // Metodos
 
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
