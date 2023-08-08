@@ -27,8 +27,9 @@ public class HomeBankingmhApplication {
 			clientRepository.save(client2);
 			clientRepository.save(client3);
 
-			Account account1 = new Account("VIN001", LocalDate.now(), 5000.0);
-			Account account2 = new Account("VIN002", LocalDate.now().plusDays(1), 7500.0);
+			Account account1 = new Account(client1, "VIN001", LocalDate.now(), 5000.0);
+			Account account2 = new Account( client2,"VIN002", LocalDate.now().plusDays(1), 7500.0);
+
 			accountRepository.save(account1);
 			accountRepository.save(account2);
 		};

@@ -15,7 +15,7 @@ public class Account {
 
     private String number;
 
-    private LocalDate creationDate;
+    private LocalDate creationDate = LocalDate.now();
 
     private Double balance;
 
@@ -28,11 +28,11 @@ public class Account {
 
     };
 
-    public Account(String number, LocalDate creationDate,Double balance ){
-
+    public Account(Client clientOwner,String number, LocalDate creationDate,Double balance ){
+        this.clientOwner = clientOwner;
         this.number = number;
         this.balance = balance;
-        this.creationDate = LocalDate.now();
+        this.creationDate = creationDate;
     }
 //  metodos accesores
 
