@@ -1,9 +1,11 @@
 package com.apmindhub.homeBankingmh.models;
 
+import com.apmindhub.homeBankingmh.dtos.AccountDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 public class Account {
@@ -20,7 +22,7 @@ public class Account {
     private Double balance;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "clientId")
     private Client clientOwner;
 
     // Constructores
@@ -61,9 +63,6 @@ public class Account {
         return clientOwner;
     }
 
-    /*
-    public void setClientOwner(Client clientOwner) {
-        this.clientOwner = clientOwner;
-    }
-    */
+
+
 }

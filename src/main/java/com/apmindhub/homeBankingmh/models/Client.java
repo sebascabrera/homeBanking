@@ -35,6 +35,10 @@ Set<Account> accounts = new HashSet<>();
     // Metodos
 
 
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
     public String getEmail() {
         return email;
     }
