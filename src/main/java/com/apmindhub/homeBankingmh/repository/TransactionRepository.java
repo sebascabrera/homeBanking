@@ -2,6 +2,7 @@ package com.apmindhub.homeBankingmh.repository;
 
 
 import com.apmindhub.homeBankingmh.models.Transaction;
+import com.apmindhub.homeBankingmh.models.TransactionType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -10,5 +11,5 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction,Long> {
 
 
-    List<Transaction> findAllByType(String Type);
+    List<Transaction> findAllByType(TransactionType Type);
 }

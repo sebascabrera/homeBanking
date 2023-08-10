@@ -32,7 +32,7 @@ public class Account {
     // Constructores
     public Account(){
 
-    };
+    }
 
     public Account(Client clientOwner,String number, LocalDate creationDate,Double balance ){
         this.clientOwner = clientOwner;
