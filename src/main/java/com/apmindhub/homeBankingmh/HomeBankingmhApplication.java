@@ -2,10 +2,13 @@ package com.apmindhub.homeBankingmh;
 
 import com.apmindhub.homeBankingmh.models.Account;
 import com.apmindhub.homeBankingmh.models.Client;
+import com.apmindhub.homeBankingmh.models.Transaction;
 import com.apmindhub.homeBankingmh.repository.AccountRepository;
 import com.apmindhub.homeBankingmh.repository.ClientRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import com.apmindhub.homeBankingmh.models.TransactionType;
+import java.time.LocalDateTime;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -32,6 +35,9 @@ public class HomeBankingmhApplication {
 
 			accountRepository.save(account1);
 			accountRepository.save(account2);
+			Transaction transaction1;
+			transaction1 = new Transaction(TransactionType.Debit, -5000.00, "Debito", LocalDateTime.now());
+
 		};
 	}
 }

@@ -1,8 +1,8 @@
 package com.apmindhub.homeBankingmh.models;
-
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Transaction {
@@ -13,23 +13,23 @@ public class Transaction {
 
     private TransactionType type;
 
-    private String amount;
+    private Double amount;
 
     private String description;
 
-    private String date;
+    private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "AccountId")
     private Account accountOwner;
 
 
-    public Transaction() {
+    public Transaction(TransactionType debit, double v, String debito, LocalDateTime now) {
     }
 
-    public Transaction(Account accountOwner, String type, String amount, String description, String date) {
+    public Transaction(Account accountOwner, TransactionType type, Double amount, String description, LocalDateTime date) {
         this.accountOwner = accountOwner;
-        this.type = TransactionType.valueOf(type);
+        this.type = type;
         this.amount = amount;
         this.description = description;
         this.date = date;
@@ -47,7 +47,7 @@ public class Transaction {
         return type;
     }
 
-    public String getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -55,7 +55,7 @@ public class Transaction {
         return description;
     }
 
-    public String getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -63,7 +63,7 @@ public class Transaction {
         this.type = type;
     }*/
 
-    public void setAmount(String amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -71,7 +71,7 @@ public class Transaction {
         this.description = description;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
