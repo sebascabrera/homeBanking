@@ -8,11 +8,7 @@ Vue.createApp({
     },
     methods: {
         getData() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get('id');
-            
-            axios.get(`/api/clients/${id}`)
-            
+            axios.get("/api/clients/1")
                 .then((response) => {
                     //get client ifo
                     this.clientInfo = response.data;
