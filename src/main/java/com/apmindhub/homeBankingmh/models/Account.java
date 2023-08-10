@@ -71,6 +71,10 @@ public class Account {
         return clientOwner;
     }
 
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
+        transaction.setAccountOwner(this);
+    }
 
 
 }
