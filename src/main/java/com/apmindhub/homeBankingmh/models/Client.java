@@ -19,7 +19,10 @@ public class Client {
     private String email;
 
 @OneToMany (mappedBy = "clientOwner", fetch = FetchType.EAGER)
-Set<Account> accounts = new HashSet<>();
+private Set<Account> accounts = new HashSet<>();
+
+@OneToMany (mappedBy = "client", fetch= FetchType.EAGER)
+private Set<ClientLoan> clientLoans;
 
     //Constructores
 
@@ -34,6 +37,10 @@ Set<Account> accounts = new HashSet<>();
 
     // Metodos
 
+
+    public Set<ClientLoan> getClientLoans() {
+        return clientLoans;
+    }
 
     public Set<Account> getAccounts() {
         return accounts;
@@ -75,4 +82,10 @@ Set<Account> accounts = new HashSet<>();
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
+
+    public void addClientLoan(ClientLoan clientLoan) {
+        clientLoan.setLoan(this);
+        clientLoans.add(clientLoan);
+    }
+
 }

@@ -27,7 +27,7 @@ public class Account {
     private Client clientOwner;
 
     @OneToMany (mappedBy = "accountOwner", fetch = FetchType.EAGER)
-    Set<Transaction> transactions = new HashSet<>();
+    private Set<Transaction> transactions = new HashSet<>();
 
     // Constructores
     public Account(){
