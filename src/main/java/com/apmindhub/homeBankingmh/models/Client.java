@@ -18,11 +18,14 @@ public class Client {
     private String lastName;
     private String email;
 
-@OneToMany (mappedBy = "clientOwner", fetch = FetchType.EAGER)
-private Set<Account> accounts = new HashSet<>();
+    @OneToMany (mappedBy = "clientOwner", fetch = FetchType.EAGER)
+    private Set<Account> accounts = new HashSet<>();
 
-@OneToMany (mappedBy = "client", fetch= FetchType.EAGER)
-private Set<ClientLoan> clientLoans = new HashSet<>();
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<ClientLoan> clientLoans = new HashSet<>();
+
+// Resto de tus atributos y métodos
+
 
     //Constructores
 

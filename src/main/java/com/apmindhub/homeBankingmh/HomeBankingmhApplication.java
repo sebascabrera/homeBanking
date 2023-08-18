@@ -1,10 +1,7 @@
 package com.apmindhub.homeBankingmh;
 
 import com.apmindhub.homeBankingmh.models.*;
-import com.apmindhub.homeBankingmh.repository.AccountRepository;
-import com.apmindhub.homeBankingmh.repository.ClientRepository;
-import com.apmindhub.homeBankingmh.repository.LoanRepository;
-import com.apmindhub.homeBankingmh.repository.TransactionRepository;
+import com.apmindhub.homeBankingmh.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 
@@ -23,7 +20,7 @@ public class HomeBankingmhApplication {
 		SpringApplication.run(HomeBankingmhApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner init(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository){
+	public CommandLineRunner init(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository){
 		return args -> {
 			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com" );
 			Client client2 = new Client("Jack", "Bauer", "jackbauer@gmail.com");
@@ -33,7 +30,7 @@ public class HomeBankingmhApplication {
 			clientRepository.save(client3);
 
 			Account account1 = new Account(client1, "VIN001", LocalDate.now(), 5000.0);
-			Account account2 = new Account(client2, "VIN002", LocalDate.now().plus(1, ChronoUnit.DAYS), 7500.0);
+			Account account2 = new Account(client2, "VIN002", LocalDate.now().plusDays(1), 7500.0);
 
 			accountRepository.save(account1);
 			accountRepository.save(account2);
@@ -49,6 +46,16 @@ public class HomeBankingmhApplication {
 			loanRepository.save(loan1);
 			loanRepository.save(loan2);
 			loanRepository.save(loan3);
+
+			ClientLoan clientLoan1 = new ClientLoan(400000L,60, client1, loan1);
+			ClientLoan clientLoan2 = new ClientLoan(200000L,36, client1, loan2);
+			ClientLoan clientLoan3 = new ClientLoan(100000L,24, client2, loan2);
+			ClientLoan clientLoan4 = new ClientLoan(200000L,36, client2, loan3);
+			clientLoanRepository.save(clientLoan1);
+			clientLoanRepository.save(clientLoan2);
+			clientLoanRepository.save(clientLoan3);
+			clientLoanRepository.save(clientLoan4);
+
 		};
 	}
 }
