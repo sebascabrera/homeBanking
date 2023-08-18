@@ -22,7 +22,7 @@ public class Client {
 private Set<Account> accounts = new HashSet<>();
 
 @OneToMany (mappedBy = "client", fetch= FetchType.EAGER)
-private Set<ClientLoan> clientLoans;
+private Set<ClientLoan> clientLoans = new HashSet<>();
 
     //Constructores
 
@@ -42,6 +42,10 @@ private Set<ClientLoan> clientLoans;
         return clientLoans;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public Set<Account> getAccounts() {
         return accounts;
     }
@@ -50,8 +54,8 @@ private Set<ClientLoan> clientLoans;
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -62,17 +66,26 @@ private Set<ClientLoan> clientLoans;
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public Long getId() {
-        return id;
+    public void addAccount(Account account){
+        account.setClient(this);
+        accounts.add(account);
     }
+
+    public void addClientLoan (ClientLoan clientLoan){
+        clientLoan.setClient(this);
+        clientLoans.add(clientLoan);
+    }
+
+
+
 
     @Override
     public String toString() {
@@ -83,9 +96,6 @@ private Set<ClientLoan> clientLoans;
                 '}';
     }
 
-    public void addClientLoan(ClientLoan clientLoan) {
-        clientLoan.setLoan(this);
-        clientLoans.add(clientLoan);
-    }
+
 
 }

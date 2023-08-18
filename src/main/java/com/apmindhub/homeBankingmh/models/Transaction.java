@@ -24,7 +24,7 @@ public class Transaction {
     private Account accountOwner;
 
 
-    public Transaction(TransactionType debit, double v, String debito, LocalDateTime now) {
+    public Transaction(TransactionType debit, Double amount, String debito, LocalDateTime now) {
     }
 
     public Transaction(Account accountOwner, TransactionType type, Double amount, String description, LocalDateTime date) {
@@ -58,10 +58,6 @@ public class Transaction {
     public LocalDateTime getDate() {
         return date;
     }
-
-/*    public void setType(String type) {
-        this.type = type;
-    }*/
 
     public void setAmount(Double amount) {
         this.amount = amount;

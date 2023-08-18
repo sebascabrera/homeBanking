@@ -3,7 +3,10 @@ package com.apmindhub.homeBankingmh.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Loan {
     @Id
@@ -17,16 +20,24 @@ public class Loan {
     private Long maxAmount;
 @ElementCollection
 @Column(name="payments")
-private Set<Integer> payments;
+private List<Integer> payments;
+
+@OneToMany (mappedBy = "loan", fetch = FetchType.EAGER)
+Set<ClientLoan> clientLoans = new HashSet<>();
+
 
 
     public Loan() {
     }
 
-    public Loan(String name, Long maxAmount, Set<Integer> payments) {
+    public Loan(String name, Long maxAmount, List<Integer> payments) {
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;
+    }
+
+    public Set<ClientLoan> getClientLoans() {
+        return clientLoans;
     }
 
     public String getName() {
@@ -45,11 +56,19 @@ private Set<Integer> payments;
         this.maxAmount = maxAmount;
     }
 
-    public Set<Integer> getPayments() {
+    public List<Integer> getPayments() {
         return payments;
     }
 
-    public void setPayments(Set<Integer> payments) {
+    public void setPayments(List<Integer> payments) {
         this.payments = payments;
+    }
+
+    public void addClientLoan(ClientLoan clientLoan){
+        clientLoan.setLoan(this);
+        clientLoans.add(clientLoan);
+    }
+    public List<Client> getClients(){
+        return clientLoans.stream().map(clientLoan -> clientLoan.getClient()).collect(Collectors.toList());
     }
 }

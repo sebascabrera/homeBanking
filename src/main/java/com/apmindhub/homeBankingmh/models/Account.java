@@ -71,10 +71,15 @@ public class Account {
         return clientOwner;
     }
 
+    public void setClient(Client client) {
+        this.clientOwner= client;
+    }
+
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
         transaction.setAccountOwner(this);
     }
+
 
 
 }
