@@ -17,6 +17,8 @@ public class ClientDTO {
 
     private Set<AccountDTO> accounts;
 
+    private Set<ClientLoanDTO> loansToDTO; // Propiedad Loans para "mappear"
+
     public ClientDTO(Client client) {
         id = client.getId();
         firstName = client.getFirstName();
@@ -25,6 +27,7 @@ public class ClientDTO {
         accounts = client.getAccounts().stream()
                 .map(account -> new AccountDTO(account))
                 .collect(Collectors.toSet());
+        loansToDTO = client.getClientLoans().stream().map(loansToDTO -> new ClientLoanDTO(loansToDTO)).collect(Collectors.toSet());
     }
     // getters
 
@@ -47,6 +50,10 @@ public class ClientDTO {
 
     public String getEmail() {
         return email;
+    }
+
+    public Set<ClientLoanDTO> getLoansDTO() {
+        return loansToDTO;
     }
 }
 

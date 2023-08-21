@@ -24,11 +24,10 @@ public class Transaction {
     private Account accountOwner;
 
 
-    public Transaction(TransactionType debit, Double amount, String debito, LocalDateTime now) {
+    public Transaction() {
     }
 
-    public Transaction(Account accountOwner, TransactionType type, Double amount, String description, LocalDateTime date) {
-        this.accountOwner = accountOwner;
+    public Transaction( TransactionType type, Double amount, String description, LocalDateTime date) {
         this.type = type;
         this.amount = amount;
         this.description = description;

@@ -34,8 +34,7 @@ public class Account {
 
     }
 
-    public Account(Client clientOwner,String number, LocalDate creationDate,Double balance ){
-        this.clientOwner = clientOwner;
+    public Account(String number, LocalDate creationDate,Double balance ){
         this.number = number;
         this.balance = balance;
         this.creationDate = creationDate;

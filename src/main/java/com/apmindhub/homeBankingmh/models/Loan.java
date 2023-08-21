@@ -36,7 +36,9 @@ public class Loan {
         this.maxAmount = maxAmount;
         this.payments = payments;
     }
-
+    public List<Client> getClients(){
+        return clientLoans.stream().map(clientLoan -> clientLoan.getClient()).collect(Collectors.toList());
+    } // Tiene uso??
     public Set<ClientLoan> getClientLoans() {
         return clientLoans;
     }
@@ -65,11 +67,11 @@ public class Loan {
         this.payments = payments;
     }
 
+
     public void addClientLoan(ClientLoan clientLoan){
         clientLoan.setLoan(this);
         clientLoans.add(clientLoan);
     }
-    public List<Client> getClients(){
-        return clientLoans.stream().map(clientLoan -> clientLoan.getClient()).collect(Collectors.toList());
-    }
+
+
 }
