@@ -16,18 +16,16 @@ public class AccountDTO {
 
     private Double balance;
 
-    private final Set<TransactionDTO> types;
+    private Set<TransactionDTO> transactions;
 
-
-
-    public AccountDTO(Account account) {
-        id = account.getId();
-        number = account.getNumber();
-        date = account.getCreationDate();
-        balance = account.getBalance();
-        types = account.getTransactions().stream()
-                .map(transaction -> new TransactionDTO(transaction))
-                .collect(Collectors.toSet());;
+    public AccountDTO (Account account){
+        this.id = account.getId();
+        this.number = account.getNumber();
+        this.date = account.getCreationDate();
+        this.balance = account.getBalance();
+        this.transactions= account.getTransactions().stream()
+                .map(element -> new TransactionDTO(element))
+                .collect(Collectors.toSet());
     }
 
     public Long getId() {
@@ -46,7 +44,7 @@ public class AccountDTO {
         return balance;
     }
 
-    public Set<TransactionDTO> getTypes() {
-        return types;
+    public Set<TransactionDTO> getTransactions() {
+        return transactions;
     }
 }
