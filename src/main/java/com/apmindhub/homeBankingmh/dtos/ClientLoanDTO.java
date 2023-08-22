@@ -12,10 +12,13 @@ public class ClientLoanDTO {
 
     private List<Integer> payments;
 
+    private Long loanId;
+
     public ClientLoanDTO() {
     }
 public ClientLoanDTO(ClientLoan clientLoan){
         id = clientLoan.getId();
+        loanId = clientLoan.getLoan().getId();
         amount = clientLoan.getAmount();
         payments = clientLoan.getLoan().getPayments();
 

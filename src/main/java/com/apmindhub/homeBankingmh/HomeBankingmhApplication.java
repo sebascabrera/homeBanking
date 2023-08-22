@@ -71,6 +71,9 @@ public class HomeBankingmhApplication {
 			clientLoanRepository.save(clientLoan3);
 			clientLoanRepository.save(clientLoan4);
 
+			Card card1= new Card();
+			card1.setCardHolder((client1.getFirstName() + " " + client1.getLastName()).toUpperCase());
+			card1.setColor(CardColor.GOLD);
 
 		};
 	}

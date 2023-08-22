@@ -79,6 +79,4 @@ public class Account {
         transaction.setAccountOwner(this);
     }
 
-
-
 }

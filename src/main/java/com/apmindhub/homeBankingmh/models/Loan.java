@@ -73,5 +73,7 @@ public class Loan {
         clientLoans.add(clientLoan);
     }
 
-
+    public Long getId() {
+        return id;
+    }
 }

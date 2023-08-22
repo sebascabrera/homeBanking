@@ -1,10 +1,7 @@
 package com.apmindhub.homeBankingmh.dtos;
 
-import com.apmindhub.homeBankingmh.models.Account;
 import com.apmindhub.homeBankingmh.models.Client;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,7 +14,7 @@ public class ClientDTO {
 
     private Set<AccountDTO> accounts;
 
-    private Set<ClientLoanDTO> loansToDTO; // Propiedad Loans para "mappear"
+    private Set<ClientLoanDTO> loans; // Propiedad Loans para "mappear"
 
     public ClientDTO(Client client) {
         id = client.getId();
@@ -27,7 +24,7 @@ public class ClientDTO {
         accounts = client.getAccounts().stream()
                 .map(account -> new AccountDTO(account))
                 .collect(Collectors.toSet());
-        loansToDTO = client.getClientLoans().stream().map(loansToDTO -> new ClientLoanDTO(loansToDTO)).collect(Collectors.toSet());
+        loans = client.getClientLoans().stream().map(loansToDTO -> new ClientLoanDTO(loansToDTO)).collect(Collectors.toSet());
     }
     // getters
 
@@ -53,7 +50,7 @@ public class ClientDTO {
     }
 
     public Set<ClientLoanDTO> getLoansDTO() {
-        return loansToDTO;
+        return loans;
     }
 }
 
