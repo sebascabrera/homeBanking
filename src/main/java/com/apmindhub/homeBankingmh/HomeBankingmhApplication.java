@@ -20,7 +20,9 @@ public class HomeBankingmhApplication {
 		SpringApplication.run(HomeBankingmhApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner init(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository){
+	public CommandLineRunner init(ClientRepository clientRepository, AccountRepository accountRepository,
+								  TransactionRepository transactionRepository, LoanRepository loanRepository,
+								  ClientLoanRepository clientLoanRepository, CardRepository cardRepository){
 		return args -> {
 			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com" );
 			Client client2 = new Client("Jack", "Bauer", "jackbauer@gmail.com");
@@ -73,8 +75,26 @@ public class HomeBankingmhApplication {
 
 			Card card1= new Card();
 			card1.setCardHolder((client1.getFirstName() + " " + client1.getLastName()).toUpperCase());
+			card1.setNumber("3325-6745-7876-4445");
 			card1.setColor(CardColor.GOLD);
+			card1.setType(CardType.DEBIT);
+			card1.setCvv((short) 990);
+			card1.setFromDate(LocalDate.now());
+			card1.setThruDate(LocalDate.now().plusYears(5));
+			client1.addCard(card1);
 
+			Card card2= new Card();
+			card2.setCardHolder((client1.getFirstName() + " " + client1.getLastName()).toUpperCase());
+			card2.setType(CardType.CREDIT);
+			card2.setColor(CardColor.TITANIUM);
+			card2.setNumber("2234-6745-552-7888");
+			card2.setCvv((short) 750);
+			card2.setFromDate(LocalDate.now());
+			card2.setThruDate(LocalDate.now().plusYears(5));
+			client1.addCard(card2);
+
+			cardRepository.save(card1);
+			cardRepository.save(card2);
 		};
 	}
 }
