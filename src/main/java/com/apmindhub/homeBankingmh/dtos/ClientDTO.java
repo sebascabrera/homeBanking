@@ -16,6 +16,8 @@ public class ClientDTO {
 
     private Set<ClientLoanDTO> loans; // Propiedad Loans para "mappear"
 
+    private Set<CardDTO> cards;
+
     public ClientDTO(Client client) {
         id = client.getId();
         firstName = client.getFirstName();
@@ -25,9 +27,14 @@ public class ClientDTO {
                 .map(account -> new AccountDTO(account))
                 .collect(Collectors.toSet());
         loans = client.getClientLoans().stream().map(loansToDTO -> new ClientLoanDTO(loansToDTO)).collect(Collectors.toSet());
+        cards = client.getCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toSet());
     }
     // getters
 
+
+    public Set<CardDTO> getCards() {
+        return cards;
+    }
 
     public Long getId() {
         return id;
