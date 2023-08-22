@@ -29,10 +29,6 @@ public class ClientDTO {
     // getters
 
 
-    public Set<AccountDTO> getAccounts() {
-        return accounts;
-    }
-
     public Long getId() {
         return id;
     }
@@ -49,7 +45,11 @@ public class ClientDTO {
         return email;
     }
 
-    public Set<ClientLoanDTO> getLoansDTO() {
+    public Set<AccountDTO> getAccounts() {
+        return accounts;
+    }
+
+    public Set<ClientLoanDTO> getLoans() {
         return loans;
     }
 }

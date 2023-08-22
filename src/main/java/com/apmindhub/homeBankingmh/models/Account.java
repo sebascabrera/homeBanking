@@ -18,7 +18,7 @@ public class Account {
 
     private String number;
 
-    private LocalDate creationDate = LocalDate.now();
+    private LocalDate creationDate;
 
     private Double balance;
 

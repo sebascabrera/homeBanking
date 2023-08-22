@@ -1,7 +1,6 @@
 package com.apmindhub.homeBankingmh.dtos;
 
 import com.apmindhub.homeBankingmh.models.Account;
-import com.apmindhub.homeBankingmh.models.Transaction;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -13,7 +12,7 @@ public class AccountDTO {
 
     private String number;
 
-    private LocalDate creationDate = LocalDate.now();
+    private LocalDate date;
 
     private Double balance;
 
@@ -24,7 +23,7 @@ public class AccountDTO {
     public AccountDTO(Account account) {
         id = account.getId();
         number = account.getNumber();
-        creationDate = account.getCreationDate();
+        date = account.getCreationDate();
         balance = account.getBalance();
         types = account.getTransactions().stream()
                 .map(transaction -> new TransactionDTO(transaction))
@@ -35,19 +34,19 @@ public class AccountDTO {
         return id;
     }
 
-    public Set<TransactionDTO> getType() {
-        return types;
-    }
-
     public String getNumber() {
         return number;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
+    public LocalDate getDate() {
+        return date;
     }
 
     public Double getBalance() {
         return balance;
+    }
+
+    public Set<TransactionDTO> getTypes() {
+        return types;
     }
 }

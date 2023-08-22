@@ -35,7 +35,7 @@ public class HomeBankingmhApplication {
 			Account account2 = new Account( "VIN002", LocalDate.now().plusDays(1), 7500.0);
 
 			client1.addAccount(account1);
-			client2.addAccount(account2);
+			client1.addAccount(account2);
 			accountRepository.save(account1);
 			accountRepository.save(account2);
 
@@ -55,10 +55,10 @@ public class HomeBankingmhApplication {
 			loanRepository.save(loan2);
 			loanRepository.save(loan3);
 
-			ClientLoan clientLoan1 = new ClientLoan(400000L,60); // client1, loan1);
-			ClientLoan clientLoan2 = new ClientLoan(200000L,36); // client1, loan2);
-			ClientLoan clientLoan3 = new ClientLoan(100000L,24); // client2, loan2);
-			ClientLoan clientLoan4 = new ClientLoan(200000L,36); // client2, loan3);
+			ClientLoan clientLoan1 = new ClientLoan(400000L,60); //
+			ClientLoan clientLoan2 = new ClientLoan(200000L,36); // client1, loan2
+			ClientLoan clientLoan3 = new ClientLoan(100000L,24); // client2, loan2
+			ClientLoan clientLoan4 = new ClientLoan(200000L,36); // client2, loan3
 
 			client1.addClientLoan(clientLoan1);
 			loan1.addClientLoan(clientLoan1);
