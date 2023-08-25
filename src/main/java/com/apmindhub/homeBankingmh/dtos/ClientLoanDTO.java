@@ -8,9 +8,11 @@ import java.util.Set;
 public class ClientLoanDTO {
     private Long id;
 
+    private String name;
+
     private Long amount;
 
-    private List<Integer> payments;
+    private Integer payments;
 
     private Long loanId;
 
@@ -18,11 +20,20 @@ public class ClientLoanDTO {
     }
 public ClientLoanDTO(ClientLoan clientLoan){
         id = clientLoan.getId();
+        name = clientLoan.getLoan().getName();
         loanId = clientLoan.getLoan().getId();
         amount = clientLoan.getAmount();
-        payments = clientLoan.getLoan().getPayments();
+        payments = clientLoan.getPayments();
 
 }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getLoanId() {
+        return loanId;
+    }
 
     public Long getId() {
         return id;
@@ -32,7 +43,7 @@ public ClientLoanDTO(ClientLoan clientLoan){
         return amount;
     }
 
-    public List<Integer> getPayments() {
+    public Integer getPayments() {
         return payments;
     }
 }

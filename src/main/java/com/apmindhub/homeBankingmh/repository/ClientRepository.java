@@ -9,6 +9,6 @@ import java.util.List;
 @RepositoryRestResource
 public interface ClientRepository extends JpaRepository<Client,Long> {
 
-    List<Client> findAllByLastName(String lastName);
+    Client findByEmail(String email);
     /*.orElse(null) Se puede agregar??*/
 }
