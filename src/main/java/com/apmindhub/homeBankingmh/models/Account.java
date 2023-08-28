@@ -13,13 +13,9 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-
     private Long id;
-
     private String number;
-
     private LocalDate creationDate;
-
     private Double balance;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -45,35 +41,27 @@ public class Account {
     public Set<Transaction> getTransactions() {
         return transactions;
     }
-
     public Long getId() {
         return id;
     }
-
     public String getNumber() {
         return number;
     }
-
     public void setNumber(String number) {
         this.number = number;
     }
-
     public LocalDate getCreationDate() {
         return creationDate;
     }
-
-       public Double getBalance() {
+    public Double getBalance() {
         return balance;
     }
-
     public Client getClientOwner() {
         return clientOwner;
     }
-
     public void setClient(Client client) {
         this.clientOwner= client;
     }
-
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
         transaction.setAccountOwner(this);

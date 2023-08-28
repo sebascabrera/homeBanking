@@ -17,16 +17,16 @@ public class AccountController {
     @Autowired
     private AccountRepository accountRepository;
     @RequestMapping("/accounts")
-public List<AccountDTO> getAccount(){
+    public List<AccountDTO> getAccount(){
         List<Account> accountList = accountRepository.findAll();
-List<AccountDTO> accountDTOList = accountList.stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
+        List<AccountDTO> accountDTOList = accountList.stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
         return accountDTOList;
     }
-@RequestMapping("/accounts/{id}")
+    @RequestMapping("/accounts/{id}")
     public AccountDTO getAccountDTO(@PathVariable Long id){
-    return accountRepository.findById(id)
-            .map(account -> new AccountDTO(account))
-            .orElse(null);
-}
+        return accountRepository.findById(id)
+                .map(account -> new AccountDTO(account))
+                .orElse(null);
+    }
 
 }

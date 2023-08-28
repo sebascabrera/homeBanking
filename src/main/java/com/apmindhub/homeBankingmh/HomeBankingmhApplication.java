@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import java.time.LocalDateTime;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class HomeBankingmhApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HomeBankingmhApplication.class, args);
 	}
+
 	@Bean
 	public CommandLineRunner init(ClientRepository clientRepository, AccountRepository accountRepository,
 								  TransactionRepository transactionRepository, LoanRepository loanRepository,
@@ -41,7 +43,6 @@ public class HomeBankingmhApplication {
 			client1.addAccount(account2);
 			accountRepository.save(account1);
 			accountRepository.save(account2);
-
 
 			Transaction transaction1, transaction2 ;
 			transaction1 = new Transaction(TransactionType.Debit, -5000.00, "Debito", LocalDateTime.now());

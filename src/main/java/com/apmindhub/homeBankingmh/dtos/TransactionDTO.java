@@ -6,13 +6,9 @@ import com.apmindhub.homeBankingmh.models.TransactionType;
 import java.time.LocalDateTime;
 
 public class TransactionDTO {
-
     private TransactionType type;
-
     private Double amount;
-
     private String description;
-
     private LocalDateTime date;
 
     public TransactionDTO(Transaction transaction) {

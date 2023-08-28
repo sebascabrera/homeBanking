@@ -14,17 +14,14 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 public class CardController {
-
     @Autowired
-private CardRepository cardRepository;
-
+    private CardRepository cardRepository;
     @RequestMapping("/cards")
     public List<CardDTO> getCard (){
-List<Card> cardList = cardRepository.findAll();
-List<CardDTO> cardDTOList = cardList.stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
-    return cardDTOList;
+        List<Card> cardList = cardRepository.findAll();
+        List<CardDTO> cardDTOList = cardList.stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
+        return cardDTOList;
     }
-
     @RequestMapping("/cards/{id}")
     public CardDTO getCardDTO (@PathVariable Long id){
         return cardRepository.findById(id).map(card -> new CardDTO(card)).orElse(null);

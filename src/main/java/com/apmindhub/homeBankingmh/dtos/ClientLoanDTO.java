@@ -7,18 +7,14 @@ import java.util.Set;
 
 public class ClientLoanDTO {
     private Long id;
-
     private String name;
-
     private Long amount;
-
     private Integer payments;
-
     private Long loanId;
-
     public ClientLoanDTO() {
     }
-public ClientLoanDTO(ClientLoan clientLoan){
+
+    public ClientLoanDTO(ClientLoan clientLoan){
         id = clientLoan.getId();
         name = clientLoan.getLoan().getName();
         loanId = clientLoan.getLoan().getId();
@@ -38,11 +34,9 @@ public ClientLoanDTO(ClientLoan clientLoan){
     public Long getId() {
         return id;
     }
-
     public Long getAmount() {
         return amount;
     }
-
     public Integer getPayments() {
         return payments;
     }
