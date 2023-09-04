@@ -24,18 +24,22 @@ public class WebAuthorization{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/api/login").permitAll()
-                .antMatchers( "/web/index.html").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/api/**", "/api/clients/current").hasAuthority("CLIENT");
+                .antMatchers("/web/index.html", "/web/js/**","/web/css/**","/web/img/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/login","/api/logout","/api/clients").permitAll()
+                .antMatchers("/h2-console/**","/rest/**", "/api/clients").hasAuthority("ADMIN")
+                .antMatchers("/api/**","/api/clients/{id}").hasAuthority("CLIENT")
+                .antMatchers("/api/clients/current", "/web/**","/api/clients/**").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST, "/clients/current/accounts/**","/clients/current/cards").hasAuthority("CLIENT")
+                .anyRequest().denyAll();
 
         http.formLogin()
-                .usernameParameter("email")
+                .usernameParameter("email") // propiedad de la clase
                 .passwordParameter("password")
                 .loginPage("/api/login");
 
-        http.logout().logoutUrl("/api/logout");
+
+
+        http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
 
         http.csrf().disable();
 

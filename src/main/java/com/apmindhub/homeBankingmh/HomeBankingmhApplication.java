@@ -32,7 +32,7 @@ public class HomeBankingmhApplication {
 			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com",passwordEncoder.encode( "Morel") );
 			Client client2 = new Client("Jack", "Bauer", "jackbauer@gmail.com",passwordEncoder.encode ("Bauer"));
 			Client client3 = new Client("Chloe", "O'Brian", "cloeobrian@hotmail.com",passwordEncoder.encode ("Obrian"));
-			Client client4 = new Client("Enzo", "Perez", "enzoperez189@gmail.com", passwordEncoder.encode("ADMIN"));
+			Client client4 = new Client("Enzo", "Perez", "enzoperez189@admin", passwordEncoder.encode("ADMIN"));
 			clientRepository.save(client1);
 			clientRepository.save(client2);
 			clientRepository.save(client3);

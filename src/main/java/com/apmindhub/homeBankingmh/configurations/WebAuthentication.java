@@ -26,9 +26,13 @@ public abstract class WebAuthentication extends GlobalAuthenticationConfigurerAd
             Client client = clientRepository.findByEmail(inputName);
 
             if (client != null) {
-                                        // persona registrada en DB, se crea una sesion,
+                // persona registrada en DB, se crea una sesion,
+                if (client.getEmail().toLowerCase().contains("@admin.com")){
+                    return new User(client.getEmail(), client.getPassword(),
+                            AuthorityUtils.createAuthorityList("ADMIN"));
+                }
                 return new User(client.getEmail(), client.getPassword(),
-                                        // asignación de rol -ca tegoría de autoridad
+                        // asignación de rol -ca tegoría de autoridad
                         AuthorityUtils.createAuthorityList("CLIENT"));
             } else {
                 throw new UsernameNotFoundException("Unknown user: " + inputName);
