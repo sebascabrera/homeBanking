@@ -44,5 +44,5 @@ public abstract class WebAuthentication extends GlobalAuthenticationConfigurerAd
 
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
-    protected abstract void configure(HttpSecurity http) throws Exception;
+
 }
