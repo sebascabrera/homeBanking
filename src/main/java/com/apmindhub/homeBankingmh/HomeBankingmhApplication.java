@@ -9,11 +9,9 @@ import org.springframework.boot.SpringApplication;
 import java.time.LocalDateTime;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @SpringBootApplication
@@ -47,8 +45,8 @@ public class HomeBankingmhApplication {
 			accountRepository.save(account2);
 
 			Transaction transaction1, transaction2 ;
-			transaction1 = new Transaction(TransactionType.Debit, -5000.00, "Debito", LocalDateTime.now());
-			transaction2 = new Transaction(TransactionType.Credit, 7000.00, "Credito", LocalDateTime.now());
+			transaction1 = new Transaction(TransactionType.DEBIT, -5000.00, "Debito", LocalDateTime.now());
+			transaction2 = new Transaction(TransactionType.CREDIT, 7000.00, "Credito", LocalDateTime.now());
 			account1.addTransaction(transaction1);
 			account2.addTransaction(transaction2);
 			transactionRepository.save(transaction1);

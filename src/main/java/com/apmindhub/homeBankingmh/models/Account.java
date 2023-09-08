@@ -62,9 +62,12 @@ public class Account {
     public void setClient(Client client) {
         this.clientOwner= client;
     }
+    public void setBalance(double v) {
+    }
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
         transaction.setAccountOwner(this);
     }
+
 
 }
