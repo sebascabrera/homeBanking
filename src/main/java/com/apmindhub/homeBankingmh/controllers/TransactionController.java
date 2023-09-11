@@ -44,36 +44,37 @@ public class TransactionController {
                                                     @RequestParam String description,
                                                     @RequestParam String fromAccountNumber,
                                                     @RequestParam String toAccountNumber,
-                                                    Authentication authentication){
+                                                    Authentication authentication) {
 
+        // Verifica solicitud son correctos
+        if (description.isEmpty() || fromAccountNumber.isEmpty() || toAccountNumber.isEmpty()) {
+            return new ResponseEntity<>("Description, Account number, or Destination Account is empty", HttpStatus.FORBIDDEN);
+        }
+        if (fromAccountNumber.equals(toAccountNumber)) {
+            return new ResponseEntity<>("Can't be the same account", HttpStatus.FORBIDDEN);
+        }
+
+        // Obtén el cliente autenticado
         Client clientAuthenticated = clientRepository.findByEmail(authentication.name());
+
+        //verifica si las cuentas existen y pertenecen al cliente autenticado
         Account initialAccount = accountRepository.getAccountByNumber(fromAccountNumber);
         Account accountDestination = accountRepository.getAccountByNumber(toAccountNumber);
 
-        if (description.isEmpty()){
-            return new ResponseEntity<>("Description is empty", HttpStatus.FORBIDDEN); //campos vacios.
-        }
-        if (fromAccountNumber.isEmpty()){
-            return new ResponseEntity<>("Account number is empty", HttpStatus.FORBIDDEN); //campos vacios.
-        }
-        if (toAccountNumber.isEmpty()){
-            return new ResponseEntity<>("Destination Account is empty", HttpStatus.FORBIDDEN); //campos vacios.
-        }
-        if (fromAccountNumber.equals(toAccountNumber)){
-            return new ResponseEntity<>("Can't be the same account", HttpStatus.FORBIDDEN); //ctas diferentes.
-        }
         if (!accountRepository.existsByNumber(fromAccountNumber)) {
-            return new ResponseEntity<>("Account doesn't exists", HttpStatus.FORBIDDEN); // cta inexistente.
+            return new ResponseEntity<>("Source Account doesn't exist", HttpStatus.FORBIDDEN);
         }
         if (!clientAuthenticated.getAccounts().contains(initialAccount)) {
-            return new ResponseEntity<>("The source account does not belong to the authenticated client ", HttpStatus.FORBIDDEN); // cte. autenticado.
+            return new ResponseEntity<>("The source account does not belong to the authenticated client", HttpStatus.FORBIDDEN);
         }
         if (!accountRepository.existsByNumber(toAccountNumber)) {
-            return new ResponseEntity<>("Account doesn't exists", HttpStatus.FORBIDDEN); // cta inexistente.
+            return new ResponseEntity<>("Destination Account doesn't exist", HttpStatus.FORBIDDEN);
         }
-        if (amount > initialAccount.getBalance()){
-            return new ResponseEntity<>("You don´t have enough funds", HttpStatus.FORBIDDEN);
+        if (amount > initialAccount.getBalance()) {
+            return new ResponseEntity<>("You don't have enough funds", HttpStatus.FORBIDDEN);
         }
+
+        // Si todas las comprobaciones son exitosas, transacciones
         Transaction debitTransaction = new Transaction(TransactionType.DEBIT, -amount,
                 description + " DEBIT - " + fromAccountNumber, LocalDateTime.now());
         initialAccount.addTransaction(debitTransaction);
@@ -81,12 +82,13 @@ public class TransactionController {
         transactionRepository.save(debitTransaction);
         accountRepository.save(initialAccount);
 
-        Transaction creditTransaction = new Transaction(TransactionType.CREDIT, +amount,description + "CREDIT +" + fromAccountNumber, LocalDateTime.now());
-        initialAccount.addTransaction(creditTransaction);
-        initialAccount.setBalance(initialAccount.getBalance() + amount);
+        Transaction creditTransaction = new Transaction(TransactionType.CREDIT, +amount, description + " CREDIT +" + fromAccountNumber, LocalDateTime.now());
+        accountDestination.addTransaction(creditTransaction);
+        accountDestination.setBalance(accountDestination.getBalance() + amount);
         transactionRepository.save(creditTransaction);
-        accountRepository.save(initialAccount);
+        accountRepository.save(accountDestination);
 
-        return new ResponseEntity<>("You did it", HttpStatus.CREATED);
+        return new ResponseEntity<>("Transaction successful", HttpStatus.CREATED);
     }
+
 }

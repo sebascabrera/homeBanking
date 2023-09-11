@@ -38,22 +38,22 @@ public class AccountController {
                 .map(account -> new AccountDTO(account))
                 .orElse(null);
     }
-    @RequestMapping(value = "/clients/current/accounts", method = RequestMethod.POST)
-    public ResponseEntity<Object> createdAccount (Authentication authentication){
-        Client clientAuth =  clientRepository.findByEmail(authentication.name());
-        if (clientAuth.getAccounts().stream().count()==3){
-            System.out.println("You have 3 accounts, that´s all folks!.");
-            return new ResponseEntity<>("Max number of accounts", HttpStatus.FORBIDDEN);
+
+    @PostMapping("/clients/current/accounts")
+    public ResponseEntity<Object> createAccount(Authentication authentication) {
+        Client clientAuth = clientRepository.findByEmail(authentication.name());
+        if (clientAuth.getAccounts().size() >= 3) {
+            return new ResponseEntity<>("You have reached the maximum number of accounts.", HttpStatus.FORBIDDEN);
         }
-        Account account = null;
+
+        String number;
         do {
-            String number = "VIN" + getRandomNumber(10000000,99999999);
-            account= new Account(number,LocalDate.now(),0.0);
-        }
-        while(accountRepository.existsByNumber(account.getNumber()));
+            number = "VIN" + getRandomNumber(10000000, 99999999);
+        } while (accountRepository.existsByNumber(number));
+
+        Account account = new Account(number, LocalDate.now(), 0.0);
         clientAuth.addAccount(account);
         accountRepository.save(account);
-        System.out.println("New account created");
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>("New account created", HttpStatus.CREATED);
     }
       }

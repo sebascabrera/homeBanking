@@ -23,24 +23,30 @@ public class WebAuthorization{
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.authorizeRequests()
-                .antMatchers("/web/index.html", "/web/js/**","/web/css/**","/web/img/**").permitAll()
-                .antMatchers("/web/index.html", "/web/js/**","/web/css/**","/web/img/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/login","/api/logout","/api/clients").permitAll()
-                .antMatchers("/h2-console/**","/rest/**", "/api/clients").hasAuthority("ADMIN")
-                .antMatchers("/api/**", "/api/clients").hasAnyAuthority("ADMIN","CLIENT")
-                .antMatchers("/api/clients/current", "/web/**","/api/clients/**").hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.POST, "/clients/current/accounts/**","/clients/current/cards").hasAuthority("CLIENT")
-                .anyRequest().denyAll();
+        http
+                .authorizeRequests()
+                .antMatchers("/web/index.html", "/web/js/**", "/web/css/**", "/web/img/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/login", "/api/logout", "/api/clients").permitAll()
+                .antMatchers("/h2-console/**", "/rest/**").hasAuthority("ADMIN")
+                .antMatchers("/api/**", "/api/clients/**").hasAnyAuthority("ADMIN", "CLIENT")
+                .antMatchers("/api/clients/current", "/api/clients/current/**").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST, "/clients/current/accounts/**", "/clients/current/cards").hasAuthority("CLIENT")
+                .anyRequest().denyAll()
 
-        http.formLogin()
-                .usernameParameter("email") // propiedad de la clase
+                .and()
+                .formLogin()
+                .usernameParameter("email")
                 .passwordParameter("password")
-                .loginPage("/api/login");
+                .loginPage("/api/login")
+
+                .and()
+                .logout()
+                .logoutUrl("/api/logout")
+                .deleteCookies("JSESSIONID");
 
 
 
-        http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
+
 
         http.csrf().disable();
 
