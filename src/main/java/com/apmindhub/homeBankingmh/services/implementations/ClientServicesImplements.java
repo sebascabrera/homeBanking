@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.toList;
 public class ClientServicesImplements implements ClientService {
 
 
-    Autowired
+    @Autowired
     private ClientRepository clientRepository;
     @Override
     public List<ClientDTO> getClientsDto() {

@@ -56,11 +56,16 @@ public class Loan {
         this.payments = payments;
     }
 
-    public void addClientLoan(ClientLoan clientLoan){
+/*    public void addClientLoan(ClientLoan clientLoan){
         clientLoan.setLoan(this);
         clientLoans.add(clientLoan);
-    }
+    }*/
     public Long getId() {
         return id;
+    }
+
+    public void addClientLoans(ClientLoan clientLoan) {
+        clientLoan.setLoan(this);
+        clientLoans.add(clientLoan);
     }
 }

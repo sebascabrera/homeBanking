@@ -95,15 +95,9 @@ public class Client {
         card.setClient(this);
         cards.add(card);
     }
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+    public void addClientLoans(ClientLoan clientLoan) {
+        clientLoan.setClient(this);
+        clientLoans.add(clientLoan);
     }
-
-
 
 }
