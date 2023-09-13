@@ -1,4 +1,4 @@
-package com.apmindhub.homeBankingmh.repository;
+package com.apmindhub.homeBankingmh.repositories;
 
 
 import com.apmindhub.homeBankingmh.models.Transaction;

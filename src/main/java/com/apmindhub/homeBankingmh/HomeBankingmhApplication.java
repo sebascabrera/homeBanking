@@ -1,7 +1,7 @@
 package com.apmindhub.homeBankingmh;
 
 import com.apmindhub.homeBankingmh.models.*;
-import com.apmindhub.homeBankingmh.repository.*;
+import com.apmindhub.homeBankingmh.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

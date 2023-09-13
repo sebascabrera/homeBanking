@@ -2,7 +2,7 @@ package com.apmindhub.homeBankingmh.controllers;
 
 import com.apmindhub.homeBankingmh.dtos.ClientDTO;
 import com.apmindhub.homeBankingmh.models.Client;
-import com.apmindhub.homeBankingmh.repository.ClientRepository;
+import com.apmindhub.homeBankingmh.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
