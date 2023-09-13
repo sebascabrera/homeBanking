@@ -27,7 +27,7 @@ public class HomeBankingmhApplication {
 								  TransactionRepository transactionRepository, LoanRepository loanRepository,
 								  ClientLoanRepository clientLoanRepository, CardRepository cardRepository){
 		return args -> {
-			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com",passwordEncoder.encode( "Morel") );
+			/*Client client1 = new Client("Melba", "Morel", "melba@mindhub.com",passwordEncoder.encode( "Morel") );
 			Client client2 = new Client("Jack", "Bauer", "jackbauer@gmail.com",passwordEncoder.encode ("Bauer"));
 			Client client3 = new Client("Chloe", "O'Brian", "cloeobrian@hotmail.com",passwordEncoder.encode ("Obrian"));
 			Client client4 = new Client("Enzo", "Perez", "enzoperez189@admin", passwordEncoder.encode("ADMIN"));
@@ -98,7 +98,7 @@ public class HomeBankingmhApplication {
 			client1.addCard(card2);
 
 			cardRepository.save(card1);
-			cardRepository.save(card2);
+			cardRepository.save(card2);*/
 		};
 	}
 }
